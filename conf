@@ -12,3 +12,21 @@ iface pnet1 inet static
     bridge_stp off
     address 10.1.1.254
     netmask 255.255.255.0
+#restart networking
+systemctl restart networking
+
+#Edit /etc/sysctl.conf
+# Uncomment the next line to enable packet forwarding for IPv4
+#net.ipv4.ip_forward=1
+
+#apply change
+ sysctl -p /etc/sysctl.conf
+ 
+ #nat rule
+  iptables -t nat -A POSTROUTING -s 10.1.1.0/24 -o pnet0 -j MASQUERADE
+  
+ #VPC test
+ VPCS> ip 10.1.1.100 255.255.255.0 10.1.1.254
+Checking for duplicate address...
+PC1 : 10.1.1.100 255.255.255.0 gateway 10.1.1.254
+ VPCS>save
