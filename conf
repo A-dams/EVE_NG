@@ -1,0 +1,14 @@
+#Show network interfaces 
+ip a
+
+#Edit network interfaces
+nano /etc/network/intrfaces
+
+#example
+iface eth1 inet manual
+auto pnet1
+iface pnet1 inet static
+    bridge_ports eth1
+    bridge_stp off
+    address 10.1.1.254
+    netmask 255.255.255.0
