@@ -6,3 +6,6 @@ iptables -A INPUT -p tcp -i eth0 --dport ssh -j ACCEPT
 
 #supprimer une règle
 iptables -D OUTPUT 2
+
+#show nat rules
+iptables -L -nv -t nat
