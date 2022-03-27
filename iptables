@@ -1,0 +1,8 @@
+#List all
+iptables -L
+
+#autoriser traffic entrant sur port spécifique
+iptables -A INPUT -p tcp -i eth0 --dport ssh -j ACCEPT
+
+#supprimer une règle
+iptables -D OUTPUT 2
